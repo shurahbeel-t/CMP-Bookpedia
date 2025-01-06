@@ -1,3 +1,7 @@
+import org.gradle.kotlin.dsl.android
+import org.gradle.kotlin.dsl.compose
+import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.room
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
@@ -19,7 +23,7 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -30,7 +34,7 @@ kotlin {
             isStatic = true
         }
     }
-    
+
     jvm("desktop")
 
     room {
@@ -39,7 +43,7 @@ kotlin {
 
     sourceSets {
         val desktopMain by getting
-        
+
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
@@ -76,6 +80,7 @@ kotlin {
             implementation(libs.kotlinx.coroutines.swing)
             implementation(libs.ktor.client.okhttp)
         }
+        // Apple
         nativeMain.dependencies {
             implementation(libs.ktor.client.darwin)
         }
